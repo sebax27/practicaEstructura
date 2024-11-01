@@ -23,7 +23,7 @@ public class Estructura {
                         menuEstudiantesIngenieria();
                         break;
                     case 2:
-                        menuEstudiantesDisenio();
+                        menuEstudiantesDiseño();
                         break;
                     case 3:
                         imprimirInventarioTotal();
@@ -61,7 +61,11 @@ public class Estructura {
                     case 1:
                         Operaciones op = new Operaciones();
                         LinkedList<EstudianteIngenieria> Registro = new LinkedList<>();
-                        op.LlenarRegistro(Registro);
+                        Exportar ex = new Exportar();
+                        op.LlenarRegistroIngenieria(Registro);
+                        ex.exportarArchivoIngenieria(Registro);
+
+                        
                         break;
                     case 2:
                         // Código para modificar préstamo de equipo
@@ -86,11 +90,11 @@ public class Estructura {
         }
     }
 
-    private void menuEstudiantesDisenio() throws IOException {
+    private void menuEstudiantesDiseño() throws IOException {
         byte opt;
         try {
             do {
-                String menuDisenio = "--- MENU ESTUDIANTES DE DISEÑO ---\n\n"
+                String menuDiseño = "--- MENU ESTUDIANTES DE DISEÑO ---\n\n"
                         + "1. REGISTRAR PRESTAMO DE EQUIPO\n"
                         + "2. MODIFICAR PRESTAMO DE EQUIPO\n"
                         + "3. DEVOLUCION DE EQUIPO\n"
@@ -98,11 +102,15 @@ public class Estructura {
                         + "5. VOLVER AL MENÚ PRINCIPAL\n\n"
                         + "Digite la opción deseada: ";
 
-                opt = Byte.parseByte(JOptionPane.showInputDialog(menuDisenio));
+                opt = Byte.parseByte(JOptionPane.showInputDialog(menuDiseño));
 
                 switch (opt) {
                     case 1:
-                        // Código para registrar préstamo de equipo
+                    Operaciones op = new Operaciones();
+                    LinkedList<EstudianteDiseño> Registro = new LinkedList<>();
+                    Exportar ex = new Exportar();
+                    op.LlenarRegistroDiseño(Registro);
+                    ex.exportarArchivoDiseño(Registro);
                         break;
                     case 2:
                         // Código para modificar préstamo de equipo
@@ -121,7 +129,7 @@ public class Estructura {
                         break;
                 }
             } while (opt != 5);
-            
+
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese una opción válida...");
             menu(); // Llamada recursiva para volver a mostrar el menú
