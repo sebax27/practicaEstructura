@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 public class Importar {
     
@@ -54,7 +55,7 @@ public class Importar {
     
             System.out.println("Archivo importado correctamente.");
         } catch (IOException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar el archivo por favor inténtelo de nuevo");
         }
     
         return estudiante;
@@ -109,10 +110,112 @@ public class Importar {
     
             System.out.println("Archivo importado correctamente.");
         } catch (IOException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar el archivo por favor inténtelo de nuevo");
         }
     
         return estudiante;
+    }
+ 
+    public LinkedList<ComputadorPortatil> leerArchivoComputadorPortatil(String nombreArchivo) {
+        String rutaArchivo = nombreArchivo;
+        LinkedList<ComputadorPortatil> computador = new LinkedList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String line;
+            ComputadorPortatil com = null;
+    
+            while ((line = br.readLine()) != null) {
+                if (line.startsWith("Serial: ")) {
+                    if (com != null) {
+                        computador.add(com);
+                    }
+                    com = new ComputadorPortatil();
+                    com.setSerial(line.substring(6)); 
+                } else if (line.startsWith("Marca: ")) {
+                    if (com != null) {
+                        com.setMarca(line.substring(5));
+                    }
+                } else if (line.startsWith("Tamaño: ")) {
+                    if (com != null) {
+                        com.setTamaño(Float.parseFloat(line.substring(6)));
+                    }
+                } else if (line.startsWith("Precio: ")) {
+                    if (com != null) {
+                        com.setPrecio(Float.parseFloat(line.substring(6)));
+                    }
+                } else if (line.startsWith("Sistema operativo : ")) {
+                    if (com != null) {
+                        com.setSistemaOperativo(line.substring(16));
+                    }
+                } else if (line.startsWith("Procesador: ")) {
+                    if (com != null) {
+                        com.setProcesador(line.substring(11));
+                        computador.add(com); 
+                        com = null; // Reiniciar para el siguiente estudiante
+                    }
+                }
+            }
+    
+            if (com != null) { // Agregar el último estudiante si el archivo no termina con "Serial: "
+            computador.add(com);
+            }
+    
+            System.out.println("Archivo importado correctamente.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar el archivo por favor inténtelo de nuevo");
+        }
+    
+        return computador;
+    }
+ 
+    public LinkedList<TabletaGrafica> leerArchivoTabletaGrafica(String nombreArchivo) {
+        String rutaArchivo = nombreArchivo;
+        LinkedList<TabletaGrafica> tableta = new LinkedList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String line;
+            TabletaGrafica ta = null;
+    
+            while ((line = br.readLine()) != null) {
+                if (line.startsWith("Serial: ")) {
+                    if (ta != null) {
+                        tableta.add(ta);
+                    }
+                    ta = new TabletaGrafica();
+                    ta.setSerial(line.substring(6)); 
+                } else if (line.startsWith("Marca: ")) {
+                    if (ta != null) {
+                        ta.setMarca(line.substring(5));
+                    }
+                } else if (line.startsWith("Tamaño: ")) {
+                    if (ta != null) {
+                        ta.setTamaño(Float.parseFloat(line.substring(6)));
+                    }
+                } else if (line.startsWith("Precio: ")) {
+                    if (ta != null) {
+                        ta.setPrecio(Float.parseFloat(line.substring(6)));
+                    }
+                } else if (line.startsWith("Almacenamiento : ")) {
+                    if (ta != null) {
+                        ta.setAlmacenamiento(line.substring(16));
+                    }
+                } else if (line.startsWith("Peso: ")) {
+                    if (ta != null) {
+                        ta.setPeso(Float.parseFloat(line.substring(4)));
+                        tableta.add(ta); 
+                        ta = null; // Reiniciar para el siguiente estudiante
+                    }
+                }
+            }
+    
+            if (ta != null) { // Agregar el último estudiante si el archivo no termina con "Serial: "
+            tableta.add(ta);
+            }
+    
+            System.out.println("Archivo importado correctamente.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar el archivo por favor inténtelo de nuevo");
+        }
+    
+        return tableta;
     }
  
 

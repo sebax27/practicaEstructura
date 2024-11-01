@@ -21,7 +21,7 @@ public class TabletaGrafica extends Dispositivo {
     }
 
     public void setAlmacenamiento(String almacenamiento) {
-        this.almacenamiento = almacenamiento;
+        this.almacenamiento = elegirAlmacenamiento()            ;
     }
 
     public float getPeso() {
@@ -47,40 +47,42 @@ public class TabletaGrafica extends Dispositivo {
 
     
 
-    public String elegirAlmacenamiento() {
+    
+private String elegirAlmacenamiento() {
+    byte opt ;
+    boolean entradaValida = false;
 
-        byte opt = 0;
-        try{
-        while (opt < 1 || opt > 3) {
-            
-            opt = Byte.parseByte(JOptionPane.showInputDialog("\n\n--- Seleccione una opción ---\n" + "1. 256 GB\n" + "2. 512 GB\n" + "3. 1 TB"));
+    while (!entradaValida) {
+        try {
+            opt = Byte.parseByte(JOptionPane.showInputDialog("\n\n--- Seleccione una opción ---\n" 
+                + "1. 256 GB\n" 
+                + "2. 512 GB\n" 
+                + "3. 1 TB"));
 
             switch (opt) {
                 case 1:
-                    setAlmacenamiento("256 GB");
+                    almacenamiento = "256 GB";
+                    entradaValida = true;
                     break;
                 case 2:
-                    setAlmacenamiento("512 GB");
+                    almacenamiento = "512 GB";
+                    entradaValida = true;
                     break;
                 case 3:
-                    setAlmacenamiento("1 TB");
+                    almacenamiento = "1 TB";
+                    entradaValida = true;
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, " Opción no válida. Por favor seleccione 1, 2 o 3");
-                    ;
+                    JOptionPane.showMessageDialog(null, "Opción no válida, por favor seleccione 1, 2 o 3");
                     break;
             }
-
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "--- Ingrese una opción válida ---");
         }
-
-    }catch(NumberFormatException e){
-
-        JOptionPane.showMessageDialog(null, "--- Ingrese una opción válida ---");
-        elegirAlmacenamiento();
     }
-    
+
     return almacenamiento;
-    }
+}
 
 
 }

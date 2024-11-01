@@ -43,7 +43,7 @@ public class Estructura {
         }
     }
 
-    private void menuEstudiantesIngenieria() throws IOException {
+    public static void menuEstudiantesIngenieria() throws IOException {
         byte opt;
         try {
             do {
@@ -61,10 +61,67 @@ public class Estructura {
                     case 1:
                         Operaciones op = new Operaciones();
                         LinkedList<EstudianteIngenieria> Registro = new LinkedList<>();
+                        
                         Exportar ex = new Exportar();
+                        Importar im = new Importar();
+                        im.leerArchivoIngenieria("EstudiantesIngenieria.txt");
                         op.LlenarRegistroIngenieria(Registro);
+                        
                         ex.exportarArchivoIngenieria(Registro);
+                        op.menuRegistroPortatil();
+                      
 
+                        break;
+                    case 2:
+                        // Código para modificar préstamo de equipo
+                        break;
+                    case 3:
+                        // Código para devolución de equipo
+                        break;
+                    case 4:
+                        // Código para buscar equipo
+                        break;
+                    case 5:
+                        JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Opción no válida...");
+                        break;
+                }
+            } while (opt != 5);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese una opción válida...");
+            menuEstudiantesIngenieria(); // Llamada recursiva para volver a mostrar el menú
+        }
+    }
+
+    private void menuEstudiantesDiseño() throws IOException {
+        byte opt = 0;
+
+        try {
+            do {
+                String menuDiseño = "--- MENU ESTUDIANTES DE DISEÑO ---\n\n"
+                        + "1. REGISTRAR PRESTAMO DE EQUIPO\n"
+                        + "2. MODIFICAR PRESTAMO DE EQUIPO\n"
+                        + "3. DEVOLUCION DE EQUIPO\n"
+                        + "4. BUSCAR EQUIPO\n"
+                        + "5. VOLVER AL MENÚ PRINCIPAL\n\n"
+                        + "Digite la opción deseada: ";
+
+                opt = Byte.parseByte(JOptionPane.showInputDialog(menuDiseño));
+
+                switch (opt) {
+                    case 1:
+                    Operaciones op = new Operaciones();
+                    LinkedList<EstudianteDiseño> Registro = new LinkedList<>();
+                    Exportar ex = new Exportar();
+                    Importar im = new Importar();
+                    im.leerArchivoIngenieria("EstudiantesDiseño.txt");
+                    op.LlenarRegistroDiseño(Registro);
+                    
+                    ex.exportarArchivoDiseño(Registro);
+                    
+                    op.menuRegistroTableta();
                         
                         break;
                     case 2:
@@ -84,55 +141,10 @@ public class Estructura {
                         break;
                 }
             } while (opt != 5);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Ingrese una opción válida...");
-            menu(); // Llamada recursiva para volver a mostrar el menú
-        }
-    }
-
-    private void menuEstudiantesDiseño() throws IOException {
-        byte opt;
-        try {
-            do {
-                String menuDiseño = "--- MENU ESTUDIANTES DE DISEÑO ---\n\n"
-                        + "1. REGISTRAR PRESTAMO DE EQUIPO\n"
-                        + "2. MODIFICAR PRESTAMO DE EQUIPO\n"
-                        + "3. DEVOLUCION DE EQUIPO\n"
-                        + "4. BUSCAR EQUIPO\n"
-                        + "5. VOLVER AL MENÚ PRINCIPAL\n\n"
-                        + "Digite la opción deseada: ";
-
-                opt = Byte.parseByte(JOptionPane.showInputDialog(menuDiseño));
-
-                switch (opt) {
-                    case 1:
-                    Operaciones op = new Operaciones();
-                    LinkedList<EstudianteDiseño> Registro = new LinkedList<>();
-                    Exportar ex = new Exportar();
-                    op.LlenarRegistroDiseño(Registro);
-                    ex.exportarArchivoDiseño(Registro);
-                        break;
-                    case 2:
-                        // Código para modificar préstamo de equipo
-                        break;
-                    case 3:
-                        // Código para devolución de equipo
-                        break;
-                    case 4:
-                        // Código para buscar equipo
-                        break;
-                    case 5:
-                        JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
-                        break;
-                    default:
-                        JOptionPane.showMessageDialog(null, "Opción no válida...");
-                        break;
-                }
-            } while (opt != 5);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Ingrese una opción válida...");
-            menu(); // Llamada recursiva para volver a mostrar el menú
+            menuEstudiantesDiseño(); // Llamada recursiva para volver a mostrar el menú
         }
     }
 

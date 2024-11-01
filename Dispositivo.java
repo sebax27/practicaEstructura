@@ -39,7 +39,7 @@ public class Dispositivo {
     }
 
     public void setMarca(String marca) {
-        if (marca.matches("[a-zA-Z]") && !marca.isEmpty()) {
+        if (marca.matches("[a-zA-Z]{1,10}") && !marca.isEmpty()) {
             this.marca = marca;
         } else {
 
@@ -74,7 +74,7 @@ public class Dispositivo {
 
     public void setPrecio(float precio) {
         try {
-            if (precio >= 1200000 && precio <= 8000000 && ! !String.valueOf(precio).isEmpty()) {
+            if (precio >= 1200000 && precio <= 8000000 &&  !String.valueOf(precio).isEmpty()) {
                 this.precio = precio;
             } else {
 
@@ -83,7 +83,7 @@ public class Dispositivo {
             }
         } catch (NumberFormatException e) {
 
-            String nuevoValor = JOptionPane.showInputDialog("Ingrese un precio válido (solo números entre 1.200.000 y 8.000.000)");
+            String nuevoValor = JOptionPane.showInputDialog("Ingrese un precio válido (solo números entre 1.200.000 y 8.000.000 pesos)");
             setPrecio(Integer.parseInt(nuevoValor));
         }
     }

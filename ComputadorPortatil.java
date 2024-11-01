@@ -21,7 +21,7 @@ public class ComputadorPortatil extends Dispositivo {
     }
 
     public void setSistemaOperativo(String sistemaOperativo) {
-        this.sistemaOperativo = sistemaOperativo;
+        this.sistemaOperativo = elegirSistemaOperativo();
     }
 
     public String getProcesador() {
@@ -29,15 +29,18 @@ public class ComputadorPortatil extends Dispositivo {
     }
 
     public void setProcesador(String procesador) {
-        this.procesador = procesador;
+        this.procesador = elegirProcesador();
     }
 
-    public String elegirSistemaOperativo() {
+    private String elegirSistemaOperativo() {
 
         byte opt = 0;
         try {
             while (opt < 1 || opt > 3) {
-                opt = Byte.parseByte(JOptionPane.showInputDialog("\n\n--- Seleccione una opción ---\n" + "1. Windows 7\n" + "2. Windows 10\n" + "3. Windows 11"));
+                opt = Byte.parseByte(JOptionPane.showInputDialog("\n\n--- Seleccione una opción ---\n" 
+                + "1. Windows 7\n" 
+                + "2. Windows 10\n" 
+                + "3. Windows 11"));
 
                 switch (opt) {
                     case 1:
@@ -62,12 +65,14 @@ public class ComputadorPortatil extends Dispositivo {
         return sistemaOperativo;
     }
 
-    public String elegirProcesador() {
+    private String elegirProcesador() {
 
         byte opt = 0;
         try {
             while (opt < 1 || opt > 2) {
-                opt = Byte.parseByte(JOptionPane.showInputDialog("\n\n--- Seleccione una opción ---\n" + "1. AMD Ryzen.\n" + "2. Intel® Core™ i5. \n"));
+                opt = Byte.parseByte(JOptionPane.showInputDialog("\n\n--- Seleccione una opción ---\n" 
+                + "1. AMD Ryzen.\n"
+                 + "2. Intel® Core™ i5. \n"));
 
                 switch (opt) {
                     case 1:
