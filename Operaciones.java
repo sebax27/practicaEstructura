@@ -9,12 +9,7 @@ public class Operaciones {
 
     static BufferedReader cp = new BufferedReader(new InputStreamReader(System.in));
 
-    public void PrestamoEquipos() {
-        LinkedList<EstudianteIngenieria> ei = new LinkedList<>();
-        LinkedList<EstudianteDiseño> ed = new LinkedList<>();
-        LinkedList<ComputadorPortatil> computadores = new LinkedList<>();
-        LinkedList<TabletaGrafica> tabletas = new LinkedList<>();
-    }
+    
 
     public LinkedList<EstudianteIngenieria> LlenarRegistroIngenieria(LinkedList<EstudianteIngenieria> Registro) throws IOException {
         String cedula;
@@ -28,7 +23,7 @@ public class Operaciones {
         boolean agregarMas = true;
 
         while (agregarMas) {
-            EstudianteIngenieria ei = new EstudianteIngenieria();
+            EstudianteIngenieria ei;
 
             while (true) {
                 cedula = JOptionPane.showInputDialog("Ingrese la cédula del estudiante: ");
@@ -44,7 +39,7 @@ public class Operaciones {
                     JOptionPane.showMessageDialog(null, "El estudiante con cédula " + cedula + " ya existe");
                     continue; // Solicitar cédula nuevamente
                 }
-
+                ei = new EstudianteIngenieria();
                 ei.setCedula(cedula);
 
                 nombre = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
@@ -93,7 +88,7 @@ public class Operaciones {
         boolean agregarMas = true;
 
         while (agregarMas) {
-            EstudianteDiseño ed = new EstudianteDiseño();
+            EstudianteDiseño ed ;
 
             while (true) {
                 cedula = JOptionPane.showInputDialog("Ingrese la cédula del estudiante: ");
@@ -109,6 +104,7 @@ public class Operaciones {
                     JOptionPane.showMessageDialog(null, "El estudiante con cédula " + cedula + " ya existe");
                     continue; // Solicitar cédula nuevamente
                 }
+                ed = new EstudianteDiseño();
                 ed.setCedula(cedula);
 
                 nombre = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
@@ -160,7 +156,7 @@ public class Operaciones {
         boolean agregarMas = true;
 
         while (agregarMas) {
-            ComputadorPortatil com = new ComputadorPortatil();
+            ComputadorPortatil com ;
 
             while (true) {
                 serial = JOptionPane.showInputDialog("Ingrese el serial del computador portatil: ");
@@ -176,7 +172,7 @@ public class Operaciones {
                     JOptionPane.showMessageDialog(null, "El estudiante con cédula " + serial + " ya existe");
                     continue; // Solicitar cédula nuevamente
                 }
-
+                com = new ComputadorPortatil();
                 com.setSerial(serial);
 
                 marca = JOptionPane.showInputDialog("Ingrese la marca del computador portatil:");
@@ -211,6 +207,7 @@ public class Operaciones {
         return Registro;
     }
 
+    
     public LinkedList<TabletaGrafica> LlenarRegistroTableta(LinkedList<TabletaGrafica> Registro) throws IOException {
         String serial;
         String marca;
@@ -223,7 +220,7 @@ public class Operaciones {
         boolean agregarMas = true;
 
         while (agregarMas) {
-            TabletaGrafica ta = new TabletaGrafica();
+            TabletaGrafica ta ;
 
             while (true) {
                 serial = JOptionPane.showInputDialog("Ingrese el serial del computador portatil: ");
@@ -239,7 +236,7 @@ public class Operaciones {
                     JOptionPane.showMessageDialog(null, "El estudiante con cédula " + serial + " ya existe");
                     continue; // Solicitar cédula nuevamente
                 }
-
+                ta = new TabletaGrafica();
                 ta.setSerial(serial);
 
                 marca = JOptionPane.showInputDialog("Ingrese la marca de la tableta:");

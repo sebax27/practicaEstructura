@@ -89,9 +89,7 @@ public class Estructura {
                     case 5:
                         JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
                         break;
-                    default:
-                        JOptionPane.showMessageDialog(null, "Opción no válida...");
-                        break;
+                  
                 }
             } while (opt != 5);
         } catch (NumberFormatException e) {
@@ -102,6 +100,10 @@ public class Estructura {
 
     private void menuEstudiantesDiseño() throws IOException {
         byte opt ;
+        Operaciones op = new Operaciones();
+        LinkedList<EstudianteDiseño> Registro = new LinkedList<>();
+        Exportar ex = new Exportar();
+        Importar im = new Importar();
 
         try {
             do {
@@ -118,15 +120,10 @@ public class Estructura {
 
                 switch (opt) {
                     case 1:
-                    Operaciones op = new Operaciones();
-                    LinkedList<EstudianteDiseño> Registro = new LinkedList<>();
-                    Exportar ex = new Exportar();
-                    Importar im = new Importar();
+                
                     im.leerArchivoIngenieria("EstudiantesDiseño.txt");
                     op.LlenarRegistroDiseño(Registro);
-                    
                     ex.exportarArchivoDiseño(Registro);
-                    
                     op.menuRegistroTableta();
                         
                         break;
