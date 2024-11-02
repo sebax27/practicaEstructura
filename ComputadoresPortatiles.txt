@@ -1,0 +1,14 @@
+Serial: sEr56748
+Marca: ASUS
+Tamaño: 15.0
+Precio: 1500000.0
+Sistema operativo: null
+Procesador: null
+---------------------------------------
+Serial: sEr3454
+Marca: Lenovo
+Tamaño: 7.0
+Precio: 1250000.0
+Sistema operativo: null
+Procesador: null
+---------------------------------------
