@@ -7,6 +7,9 @@ public class Estructura {
 
     public void menu() throws IOException {
         byte opt = 0;
+        Operaciones op = new Operaciones();
+        LinkedList<ComputadorPortatil> portatiles = new LinkedList<>();
+        LinkedList<TabletaGrafica> tabletas = new LinkedList<>();
         try {
             do {
                 String menuPrincipal = "--- MENU PRINCIPAL ---\n\n"
@@ -26,7 +29,7 @@ public class Estructura {
                         menuEstudiantesDiseño();
                         break;
                     case 3:
-                        imprimirInventarioTotal();
+                    op.mostrarInventarioCompleto(portatiles, tabletas);
                         break;
                     case 4:
                         JOptionPane.showMessageDialog(null, "Vuelva pronto");
@@ -67,8 +70,6 @@ public class Estructura {
                        
                         im.leerArchivoIngenieria("EstudiantesIngenieria.txt");
                         op.LlenarRegistroIngenieria(Registro);
-                        
-                        ex.exportarArchivoIngenieria(Registro);
                         op.menuRegistroPortatil();
                       
 
@@ -84,7 +85,7 @@ public class Estructura {
                         // Código para devolución de equipo
                         break;
                     case 4:
-                        // Código para buscar equipo
+
                         break;
                     case 5:
                         JOptionPane.showMessageDialog(null, "Volviendo al menú principal...");
@@ -151,8 +152,5 @@ public class Estructura {
         }
     }
 
-    private void imprimirInventarioTotal() {
-        // Código para imprimir el inventario total
-        JOptionPane.showMessageDialog(null, "Imprimiendo inventario total...");
-    }
+    
 }

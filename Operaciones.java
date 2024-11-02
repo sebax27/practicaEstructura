@@ -6,11 +6,12 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class Operaciones {
+
     
+   
+   
 
     static BufferedReader cp = new BufferedReader(new InputStreamReader(System.in));
-
-    
 
     public LinkedList<EstudianteIngenieria> LlenarRegistroIngenieria(LinkedList<EstudianteIngenieria> Registro) throws IOException {
         String cedula;
@@ -33,9 +34,8 @@ public class Operaciones {
                 // Salir del metodo
                 if (cedula == null) {
                     JOptionPane.showMessageDialog(null, "Operacion cancelada.");
-                    return Registro; 
-                } 
-
+                    return Registro;
+                }
 
                 // Verificar si el estudiante ya existe
                 if (b.BuscarIngeniero(Registro, cedula) != null) {
@@ -72,7 +72,7 @@ public class Operaciones {
                 String opt = JOptionPane.showInputDialog("Desea agregar mas registros? (1. si o 2. no)");
 
                 if ("2".equals(opt)) {
-                    agregarMas = false; 
+                    agregarMas = false;
                     break; // Salir del bucle
                 } else if (!"1".equals(opt)) {
                     JOptionPane.showMessageDialog(null, "Opcion no valida");
@@ -91,12 +91,12 @@ public class Operaciones {
         String modalidad;
         int asignaturas;
         String serial;
-        BuscarRegistro b = new BuscarRegistro();
         Exportar ex = new Exportar();
+        BuscarRegistro b = new BuscarRegistro();
         boolean agregarMas = true;
 
         while (agregarMas) {
-            EstudianteDiseño ed ;
+            EstudianteDiseño ed;
 
             while (true) {
                 cedula = JOptionPane.showInputDialog("Ingrese la cédula del estudiante: ");
@@ -104,7 +104,7 @@ public class Operaciones {
                 // Salir del metodo
                 if (cedula == null) {
                     JOptionPane.showMessageDialog(null, "Operación cancelada.");
-                    return Registro; 
+                    return Registro;
                 }
 
                 // Verificar si el estudiante ya existe
@@ -152,8 +152,9 @@ public class Operaciones {
             }
         }
         return Registro;
-
+    
     }
+    
 
     public LinkedList<ComputadorPortatil> LlenarRegistroComputadorPortatil(LinkedList<ComputadorPortatil> Registro) throws IOException {
         String serial;
@@ -167,7 +168,7 @@ public class Operaciones {
         boolean agregarMas = true;
 
         while (agregarMas) {
-            ComputadorPortatil com ;
+            ComputadorPortatil com;
 
             while (true) {
                 serial = JOptionPane.showInputDialog("Ingrese el serial del computador portatil: ");
@@ -207,21 +208,20 @@ public class Operaciones {
                 ex.exportarArchivoComputadorPortatil(Registro);
 
                 // Preguntar si se desea agregar más registros
-                 String opt = JOptionPane.showInputDialog("Desea agregar más registros? (1. si o 2. no)");
+                String opt = JOptionPane.showInputDialog("Desea agregar más registros? (1. si o 2. no)");
 
-                 if ("2".equals(opt)) {
-                     agregarMas = false; // Salir del bucle
-                     break; // Salir del bucle interno también
-                 } else if (!"1".equals(opt)) {
-                     JOptionPane.showMessageDialog(null, "Opción no válida");
-                     break; // Regresar al inicio para pedir la cédula de nuevo
-                 }
+                if ("2".equals(opt)) {
+                    agregarMas = false; // Salir del bucle
+                    break; // Salir del bucle interno también
+                } else if (!"1".equals(opt)) {
+                    JOptionPane.showMessageDialog(null, "Opción no válida");
+                    break; // Regresar al inicio para pedir la cédula de nuevo
+                }
             }
         }
         return Registro;
     }
 
-    
     public LinkedList<TabletaGrafica> LlenarRegistroTableta(LinkedList<TabletaGrafica> Registro) throws IOException {
         String serial;
         String marca;
@@ -234,7 +234,7 @@ public class Operaciones {
         boolean agregarMas = true;
 
         while (agregarMas) {
-            TabletaGrafica ta ;
+            TabletaGrafica ta;
 
             while (true) {
                 serial = JOptionPane.showInputDialog("Ingrese el serial del computador portatil: ");
@@ -291,9 +291,8 @@ public class Operaciones {
 
     public void menuRegistroPortatil() throws IOException {
         byte opt;
-        Operaciones op = new Operaciones();
-        Exportar ex = new Exportar();
         Importar im = new Importar();
+        Operaciones op = new Operaciones();
         LinkedList<ComputadorPortatil> Registro = new LinkedList<>();
 
         try {
@@ -305,7 +304,7 @@ public class Operaciones {
                 case 1:
                     im.leerArchivoComputadorPortatil("ComputadoresPortatiles.txt");
                     op.LlenarRegistroComputadorPortatil(Registro);
-                    ex.exportarArchivoComputadorPortatil(Registro);
+                    
 
                     JOptionPane.showMessageDialog(null, "Dispositivo agregado correctamente");
                     break;
@@ -325,9 +324,9 @@ public class Operaciones {
 
     public void menuRegistroTableta() throws IOException {
         byte opt;
-        Operaciones op = new Operaciones();
-        Exportar ex = new Exportar();
         Importar im = new Importar();
+        Operaciones op = new Operaciones();
+
         LinkedList<TabletaGrafica> Registro = new LinkedList<>();
 
         try {
@@ -339,17 +338,17 @@ public class Operaciones {
                 case 1:
                     im.leerArchivoTabletaGrafica("TabletasGraficas.txt");
                     op.LlenarRegistroTableta(Registro);
-                    ex.exportarArchivoTabletaGrafica(Registro);
-
                     JOptionPane.showMessageDialog(null, "Dispositivo agregado correctamente");
+
                     break;
                 case 2:
                     im.leerArchivoTabletaGrafica("TabletasGraficas.txt");
                     op.mostrarTabletas(Registro);
                     JOptionPane.showMessageDialog(null, "Dispositivos mostrados correctamente");
+
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Opción no valida, seleccione 1 o 2");
+                    JOptionPane.showMessageDialog(null, "Opcion no valida, seleccione 1 o 2");
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Entrada invalida por favor ingrese un numero");
@@ -404,7 +403,7 @@ public class Operaciones {
         if (portatiles.isEmpty()) {
             inventario += "No hay computadores portatiles en el inventario.\n";
         } else {
-           
+
         }
 
         // Agregar información de las tabletas gráficas
@@ -413,8 +412,7 @@ public class Operaciones {
             inventario += "No hay tabletas gráficas en el inventario.\n";
 
             for (ComputadorPortatil equipo : portatiles) {
-                inventario += (                  
-                        "Serial: " + equipo.getSerial() + "\n"
+                inventario += ("Serial: " + equipo.getSerial() + "\n"
                         + "Marca: " + equipo.getMarca() + "\n"
                         + "Tamaño: " + equipo.getTamaño() + "\n"
                         + "Precio: " + equipo.getPrecio() + "\n"
@@ -425,8 +423,7 @@ public class Operaciones {
 
         } else {
             for (TabletaGrafica equipo : tabletas) {
-                inventario += (
-                        "Serial: " + equipo.getSerial() + "\n"
+                inventario += ("Serial: " + equipo.getSerial() + "\n"
                         + "Marca: " + equipo.getMarca() + "\n"
                         + "Tamaño: " + equipo.getTamaño() + "\n"
                         + "Precio: " + equipo.getPrecio() + "\n"
@@ -445,15 +442,16 @@ public class Operaciones {
         EstudianteIngenieria ei = new EstudianteIngenieria();
         ComputadorPortatil com = new ComputadorPortatil();
         BuscarRegistro b = new BuscarRegistro();
+        Exportar ex = new Exportar();
         boolean encontrado = false;
 
         while (true) {
             cedula = JOptionPane.showInputDialog("Ingrese la cédula del estudiante cuyo préstamo desea modificar:");
 
-           // Salir del método
+            // Salir del método
             if (cedula == null) {
                 JOptionPane.showMessageDialog(null, "Operación cancelada.");
-                return; 
+                return;
             }
 
             ei = b.BuscarIngeniero(Registro, cedula);
@@ -474,7 +472,7 @@ public class Operaciones {
         // Salir del método
         if (serialSeleccionado == null) {
             JOptionPane.showMessageDialog(null, "Operación cancelada.");
-            return; 
+            return;
         }
 
         if (com != null) {
@@ -483,16 +481,16 @@ public class Operaciones {
 
             // Modificar el equipo existente
             String nuevoSerial = JOptionPane.showInputDialog("Ingrese el nuevo serial del equipo (el qeuipo actual es: " + com.getSerial() + "):");
-            com.setSerial(nuevoSerial); 
+            com.setSerial(nuevoSerial);
 
             String nuevaMarca = JOptionPane.showInputDialog("Ingrese la nueva marca del equipo (el equipo actual es: " + com.getMarca() + "):");
             com.setMarca(nuevaMarca);
 
             String nuevoTamaño = JOptionPane.showInputDialog("Ingrese el nuevo tamaño del equipo (el qeuipo actual es: " + com.getTamaño() + "):");
-            com.setTamaño(Float.parseFloat(nuevoTamaño)); 
+            com.setTamaño(Float.parseFloat(nuevoTamaño));
 
             String nuevoPrecio = JOptionPane.showInputDialog("Ingrese el nuevo precio del equipo (el qeuipo actual es: " + com.getPrecio() + "):");
-            com.setPrecio(Float.parseFloat(nuevoPrecio)); 
+            com.setPrecio(Float.parseFloat(nuevoPrecio));
 
             String nuevoSistemaOperativo = JOptionPane.showInputDialog("Ingrese el nuevo sistema operativo del equipo (el qeuipo actual es: " + com.getSistemaOperativo() + "):");
             com.setSistemaOperativo(nuevoSistemaOperativo);
@@ -500,7 +498,7 @@ public class Operaciones {
             String nuevoProcesador = JOptionPane.showInputDialog("Ingrese el nuevo procesador del equipo (el qeuipo actual es: " + com.getProcesador() + "):");
             com.setProcesador(nuevoProcesador);
 
-
+            ex.exportarArchivoComputadorPortatil(equipos);
 
             JOptionPane.showMessageDialog(null, "Préstamo modificado correctamente para el estudiante con cédula " + cedula);
 
@@ -511,18 +509,19 @@ public class Operaciones {
 
     public void modificarPrestamoEquipoDiseño(LinkedList<EstudianteDiseño> Registro, LinkedList<TabletaGrafica> equipos) throws IOException {
         String cedula;
-        EstudianteDiseño ed= new EstudianteDiseño(); 
-        TabletaGrafica ta = new TabletaGrafica();
-        BuscarRegistro b = new BuscarRegistro();
+            EstudianteDiseño ed = new EstudianteDiseño();
+            TabletaGrafica ta = new TabletaGrafica();
+            BuscarRegistro b = new BuscarRegistro();
+            Exportar ex = new Exportar();
         boolean encontrado = false;
 
         while (true) {
             cedula = JOptionPane.showInputDialog("Ingrese la cedula del estudiante cuyo prestamo desea modificar:");
 
-          // Salir del método
+            // Salir del método
             if (cedula == null) {
                 JOptionPane.showMessageDialog(null, "Operacion cancelada.");
-                return; 
+                return;
             }
 
             ed = b.buscarDiseñador(Registro, cedula);
@@ -532,7 +531,7 @@ public class Operaciones {
 
             } else {
                 encontrado = true; // Se ha encontrado al estudiante
-                break; 
+                break;
             }
         }
         mostrarTabletas(equipos);
@@ -543,7 +542,7 @@ public class Operaciones {
         // Verificar si el usuario cancela la entrada
         if (serialSeleccionado == null) {
             JOptionPane.showMessageDialog(null, "Operacion cancelada ");
-            return; 
+            return;
         }
 
         if (ta != null) {
@@ -552,7 +551,7 @@ public class Operaciones {
 
             // Modificar el equipo existente
             String nuevoSerial = JOptionPane.showInputDialog("Ingrese el nuevo serial del equipo (el qeuipo actual es: " + ta.getSerial() + "):");
-            ta.setSerial(nuevoSerial); 
+            ta.setSerial(nuevoSerial);
 
             String nuevaMarca = JOptionPane.showInputDialog("Ingrese la nueva marca del equipo (el equipo actual es: " + ta.getMarca() + "):");
             ta.setMarca(nuevaMarca);
@@ -561,16 +560,16 @@ public class Operaciones {
             ta.setTamaño(Float.parseFloat(nuevoTamaño));
 
             String nuevoPrecio = JOptionPane.showInputDialog("Ingrese el nuevo precio del equipo (el qeuipo actual es: " + ta.getSerial() + "):");
-            ta.setPrecio(Float.parseFloat(nuevoPrecio)); 
+            ta.setPrecio(Float.parseFloat(nuevoPrecio));
 
             String nuevoSistemaOperativo = JOptionPane.showInputDialog("Ingrese el nuevo almacenamiento del equipo (el qeuipo actual es: " + ta.getAlmacenamiento() + "):");
-            ta.setAlmacenamiento(nuevoSistemaOperativo); 
+            ta.setAlmacenamiento(nuevoSistemaOperativo);
 
             String nuevoProcesador = JOptionPane.showInputDialog("Ingrese el nuevo serial del peso (el qeuipo actual es: " + ta.getPeso() + "):");
             ta.setPeso(Float.parseFloat(nuevoProcesador));
 
+            ex.exportarArchivoTabletaGrafica(equipos);
 
-            
             JOptionPane.showMessageDialog(null, "Préstamo modificado correctamente para el estudiante con cédula " + cedula);
 
         } else {
