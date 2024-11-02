@@ -59,9 +59,7 @@ public class Operaciones {
 
             Registro.add(ei);
 
-            
-
-              // Preguntar si se desea agregar más registros
+            // Preguntar si se desea agregar más registros
             System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
             String opt = cp.readLine(); // Leer la entrada del usuario
 
@@ -117,15 +115,13 @@ public class Operaciones {
 
             Registro.add(ed);
 
-          
+            // Preguntar si se desea agregar más registros
+            System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
+            String opt = cp.readLine(); // Leer la entrada del usuario
 
-               // Preguntar si se desea agregar más registros
-               System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
-               String opt = cp.readLine(); // Leer la entrada del usuario
-   
-               if (opt.equals("2")) {
-                   agregarMas = false; // Salir del bucle
-               }
+            if (opt.equals("2")) {
+                agregarMas = false; // Salir del bucle
+            }
 
         }
         return Registro;
@@ -136,7 +132,7 @@ public class Operaciones {
         String marca;
         String tamaño;
         String precio;
-        String sistemaOperativo ;
+        String sistemaOperativo;
         String procesador;
 
         BuscarRegistro b = new BuscarRegistro();
@@ -172,13 +168,13 @@ public class Operaciones {
 
             Registro.add(com);
 
-               // Preguntar si se desea agregar más registros
-               System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
-               String opt = cp.readLine(); // Leer la entrada del usuario
-   
-               if (opt.equals("2")) {
-                   agregarMas = false; // Salir del bucle
-               }
+            // Preguntar si se desea agregar más registros
+            System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
+            String opt = cp.readLine(); // Leer la entrada del usuario
+
+            if (opt.equals("2")) {
+                agregarMas = false; // Salir del bucle
+            }
 
         }
         return Registro;
@@ -225,13 +221,13 @@ public class Operaciones {
 
             Registro.add(ta);
 
-               // Preguntar si se desea agregar más registros
-               System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
-               String opt = cp.readLine(); // Leer la entrada del usuario
-   
-               if (opt.equals("2")) {
-                   agregarMas = false; // Salir del bucle
-               }
+            // Preguntar si se desea agregar más registros
+            System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
+            String opt = cp.readLine(); // Leer la entrada del usuario
+
+            if (opt.equals("2")) {
+                agregarMas = false; // Salir del bucle
+            }
 
         }
         return Registro;
@@ -251,9 +247,10 @@ public class Operaciones {
 
             switch (opt) {
                 case 1:
+                    im.leerArchivoComputadorPortatil("ComputadorPortatil.txt");
                     op.LlenarRegistroComputadorPortatil(Registro);
                     ex.exportarArchivoComputadorPortatil(Registro);
-                    im.leerArchivoComputadorPortatil("ComputadorPortatil.txt");
+
                     JOptionPane.showMessageDialog(null, "Dispositivo agregado correctamente");
                     break;
                 case 2:
@@ -283,9 +280,10 @@ public class Operaciones {
 
             switch (opt) {
                 case 1:
+                    im.leerArchivoTabletaGrafica("TabletasGraficas");
                     op.LlenarRegistroTableta(Registro);
                     ex.exportarArchivoTabletaGrafica(Registro);
-                    im.leerArchivoTabletaGrafica("TabletasGraficas");
+
                     JOptionPane.showMessageDialog(null, "Dispositivo agregado correctamente");
                     break;
                 case 2:

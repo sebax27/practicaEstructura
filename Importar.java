@@ -21,13 +21,13 @@ public class Importar {
                     ei = new EstudianteIngenieria();
                     ei.setCedula(line.substring(8)); 
                 } else if (line.startsWith("Nombre: ")) {
-                    if (ei != null) {
+                     if (ei != null) {
                         ei.setNombre(line.substring(8));
                     }
                 } else if (line.startsWith("Apellido: ")) {
                     if (ei != null) {
                         ei.setApellido(line.substring(10));
-                    }
+                    } 
                 } else if (line.startsWith("Telefono: ")) {
                     if (ei != null) {
                         ei.setTelefono(line.substring(10));
