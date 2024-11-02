@@ -303,7 +303,7 @@ public class Operaciones {
     public void mostrarPortatiles(LinkedList<ComputadorPortatil> Registro) {
 
         for (ComputadorPortatil com : Registro) {
-            System.out.println("Detalles del portátil:\n"
+            JOptionPane.showMessageDialog(null, "Detalles del portátil:\n"
                     + "Serial: " + com.getSerial() + "\n"
                     + "Marca: " + com.getMarca() + "\n"
                     + "Tamaño: " + com.getTamaño() + "\n"
@@ -317,7 +317,7 @@ public class Operaciones {
     public void mostrarTabletas(LinkedList<TabletaGrafica> Registro) {
 
         for (TabletaGrafica ta : Registro) {
-            System.out.println("Detalles del portátil:\n"
+            JOptionPane.showMessageDialog(null, "Detalles del portátil:\n"
                     + "Serial: " + ta.getSerial() + "\n"
                     + "Marca: " + ta.getMarca() + "\n"
                     + "Tamaño: " + ta.getTamaño() + "\n"
@@ -328,4 +328,60 @@ public class Operaciones {
         }
     }
 
+    public void modificarPrestamoEquipoIngenieria(LinkedList<EstudianteIngenieria> Registro, LinkedList<ComputadorPortatil> equipos) throws IOException {
+        String cedula;
+        EstudianteIngenieria ei = new EstudianteIngenieria();
+        ComputadorPortatil com = new ComputadorPortatil();
+        BuscarRegistro b = new BuscarRegistro();
+        boolean encontrado = false;
+
+        while (true) {
+            cedula = JOptionPane.showInputDialog("Ingrese la cédula del estudiante cuyo préstamo desea modificar:");
+
+            // Opción para salir
+            if (cedula == null) {
+                JOptionPane.showMessageDialog(null, "Operación cancelada.");
+                return; // Salir del método
+            }
+
+            ei = b.BuscarIngeniero(Registro, cedula);
+
+            if (ei == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró un estudiante con la cédula " + cedula + " Intente de nuevo");
+
+            } else {
+                encontrado = true; // Se ha encontrado al estudiante
+                break; // Salir del bucle
+            }
+        }
+        mostrarPortatiles(equipos);
+
+        String serialSeleccionado = JOptionPane.showInputDialog("Ingrese el serial del equipo que desea modificar:");
+        com = b.buscarComputadorPortatil(equipos, serialSeleccionado);
+
+        // Verificar si el usuario cancela la entrada
+        if (serialSeleccionado == null) {
+            JOptionPane.showMessageDialog(null, "Operación cancelada.");
+            return; // Salir del método
+        }
+
+        if (com != null) {
+
+            
+            JOptionPane.showMessageDialog(null, "Modificando el prestamo");
+
+            // Modificar el equipo existente
+            String nuevoSerial = JOptionPane.showInputDialog("Ingrese el nuevo serial del equipo (el qeuipo actual es: " + com.getSerial() + "):");
+            com.setSerial(nuevoSerial); // Modificar el serial del equipo
+
+            String nuevaMarca = JOptionPane.showInputDialog("Ingrese la nueva marca del equipo (el equipo actual es: " + com.getMarca() + "):");
+            com.setMarca(nuevaMarca);
+
+            // Modificar otros campos del computador portátil según sea necesario
+            JOptionPane.showMessageDialog(null, "Préstamo modificado correctamente para el estudiante con cédula " + cedula);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró un equipo con el serial ingresado.");
+        }
+    }
 }

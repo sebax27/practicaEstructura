@@ -45,6 +45,11 @@ public class Estructura {
 
     public static void menuEstudiantesIngenieria() throws IOException {
         byte opt;
+        Operaciones op = new Operaciones();
+        LinkedList<EstudianteIngenieria> Registro = new LinkedList<>();
+        
+        Exportar ex = new Exportar();
+        Importar im = new Importar();
         try {
             do {
                 String menuIngenieria = "--- MENU ESTUDIANTES DE INGENIERIA ---\n\n"
@@ -59,11 +64,7 @@ public class Estructura {
 
                 switch (opt) {
                     case 1:
-                        Operaciones op = new Operaciones();
-                        LinkedList<EstudianteIngenieria> Registro = new LinkedList<>();
-                        
-                        Exportar ex = new Exportar();
-                        Importar im = new Importar();
+                       
                         im.leerArchivoIngenieria("EstudiantesIngenieria.txt");
                         op.LlenarRegistroIngenieria(Registro);
                         
@@ -73,7 +74,8 @@ public class Estructura {
 
                         break;
                     case 2:
-                        // Código para modificar préstamo de equipo
+                        LinkedList<ComputadorPortatil> equipos = new LinkedList<>();
+                        op.modificarPrestamoEquipoIngenieria(Registro, equipos);
                         break;
                     case 3:
                         // Código para devolución de equipo
@@ -96,7 +98,7 @@ public class Estructura {
     }
 
     private void menuEstudiantesDiseño() throws IOException {
-        byte opt = 0;
+        byte opt ;
 
         try {
             do {
@@ -109,6 +111,7 @@ public class Estructura {
                         + "Digite la opción deseada: ";
 
                 opt = Byte.parseByte(JOptionPane.showInputDialog(menuDiseño));
+                
 
                 switch (opt) {
                     case 1:
