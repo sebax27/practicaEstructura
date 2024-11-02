@@ -30,43 +30,53 @@ public class Operaciones {
         while (agregarMas) {
             EstudianteIngenieria ei = new EstudianteIngenieria();
 
-            cedula = JOptionPane.showInputDialog("Ingrese la cedula del estudiante");
+            while (true) {
+                cedula = JOptionPane.showInputDialog("Ingrese la cédula del estudiante: ");
 
-            if (b.BuscarIngeniero(Registro, cedula) != null) {
-                JOptionPane.showMessageDialog(null, "El estudiante con cédula " + cedula + " ya existe");
-                continue; // Solicitar cédula nuevamente
+                // Opción para salir
+                if (cedula == null) {
+                    JOptionPane.showMessageDialog(null, "Operación cancelada.");
+                    return Registro; // Salir del método
+                }
+
+                // Verificar si el estudiante ya existe
+                if (b.BuscarIngeniero(Registro, cedula) != null) {
+                    JOptionPane.showMessageDialog(null, "El estudiante con cédula " + cedula + " ya existe");
+                    continue; // Solicitar cédula nuevamente
+                }
+
+                ei.setCedula(cedula);
+
+                nombre = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
+                ei.setNombre(nombre);
+
+                apellido = JOptionPane.showInputDialog("Ingrese el apellido del estudiante");
+                ei.setApellido(apellido);
+
+                telefono = JOptionPane.showInputDialog("Ingrese el telefono del estudiante");
+                ei.setTelefono(telefono);
+
+                numSemestreActual = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del semestre que el estudiante esta cursando"));
+                ei.setNumSemestreActual(numSemestreActual);
+
+                promedioAcumulado = Float.parseFloat(JOptionPane.showInputDialog("Ingrese el promedio del estudiante"));
+                ei.setPromedioAcumulado(promedioAcumulado);
+
+                serial = JOptionPane.showInputDialog("Ingrese el serial del estudiante");
+                ei.setSerial(serial);
+
+                Registro.add(ei);
+                // Preguntar si se desea agregar más registros
+                String opt = JOptionPane.showInputDialog("¿Desea agregar más registros? (1. Si o 2. No)");
+
+                if ("2".equals(opt)) {
+                    agregarMas = false; // Salir del bucle
+                    break; // Salir del bucle interno también
+                } else if (!"1".equals(opt)) {
+                    JOptionPane.showMessageDialog(null, "Opción no válida");
+                    break; // Regresar al inicio para pedir la cédula de nuevo
+                }
             }
-            ei = new EstudianteIngenieria();// Crear un nuevo objeto si no existe un registro duplicado
-            ei.setCedula(cedula);
-
-            nombre = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
-            ei.setNombre(nombre);
-
-            apellido = JOptionPane.showInputDialog("Ingrese el apellido del estudiante");
-            ei.setApellido(apellido);
-
-            telefono = JOptionPane.showInputDialog("Ingrese el telefono del estudiante");
-            ei.setTelefono(telefono);
-
-            numSemestreActual = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número del semestre que el estudiante esta cursando"));
-            ei.setNumSemestreActual(numSemestreActual);
-
-            promedioAcumulado = Float.parseFloat(JOptionPane.showInputDialog("Ingrese el promedio del estudiante"));
-            ei.setPromedioAcumulado(promedioAcumulado);
-
-            serial = JOptionPane.showInputDialog("Ingrese el serial del estudiante");
-            ei.setSerial(serial);
-
-            Registro.add(ei);
-
-            // Preguntar si se desea agregar más registros
-            System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
-            String opt = cp.readLine(); // Leer la entrada del usuario
-
-            if (opt.equals("2")) {
-                agregarMas = false; // Salir del bucle
-            }
-
         }
         return Registro;
     }
@@ -85,46 +95,57 @@ public class Operaciones {
         while (agregarMas) {
             EstudianteDiseño ed = new EstudianteDiseño();
 
-            cedula = JOptionPane.showInputDialog("Ingrese la cedula del estudiante");
+            while (true) {
+                cedula = JOptionPane.showInputDialog("Ingrese la cédula del estudiante: ");
 
-            ed = b.buscarDiseñador(Registro, cedula);
-            if (b.buscarDiseñador(Registro, cedula) != null) {
-                JOptionPane.showMessageDialog(null, "El estudiante con cédula " + cedula + " ya existe");
-                continue; // Solicitar cédula nuevamente
+                // Opción para salir
+                if (cedula == null) {
+                    JOptionPane.showMessageDialog(null, "Operación cancelada.");
+                    return Registro; // Salir del método
+                }
+
+                // Verificar si el estudiante ya existe
+                if (b.buscarDiseñador(Registro, cedula) != null) {
+                    JOptionPane.showMessageDialog(null, "El estudiante con cédula " + cedula + " ya existe");
+                    continue; // Solicitar cédula nuevamente
+                }
+                ed.setCedula(cedula);
+
+                nombre = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
+                ed.setNombre(nombre);
+
+                apellido = JOptionPane.showInputDialog("Ingrese el apellido del estudiante");
+                ed.setApellido(apellido);
+
+                telefono = JOptionPane.showInputDialog("Ingrese el telefono del estudiante");
+                ed.setTelefono(telefono);
+
+                modalidad = (JOptionPane.showInputDialog("Ingrese la modalidad del estudiante (virtual o presencial)"));
+                ed.setModalidad(modalidad);
+
+                asignaturas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de asignaturas del estudiante"));
+                ed.setAsignaturas(asignaturas);
+
+                serial = JOptionPane.showInputDialog("Ingrese el serial del estudiante");
+                ed.setSerial(serial);
+
+                Registro.add(ed);
+
+                // Preguntar si se desea agregar más registros
+                String opt = JOptionPane.showInputDialog("¿Desea agregar más registros? (1. Si o 2. No)");
+
+                if ("2".equals(opt)) {
+                    agregarMas = false; // Salir del bucle
+                    break; // Salir del bucle interno también
+                } else if (!"1".equals(opt)) {
+                    JOptionPane.showMessageDialog(null, "Opción no válida");
+                    break; // Regresar al inicio para pedir la cédula de nuevo
+                }
+
             }
-            ed = new EstudianteDiseño();// Crear un nuevo objeto si no existe un registro duplicado
-            ed.setCedula(cedula);
-
-            nombre = JOptionPane.showInputDialog("Ingrese el nombre del estudiante");
-            ed.setNombre(nombre);
-
-            apellido = JOptionPane.showInputDialog("Ingrese el apellido del estudiante");
-            ed.setApellido(apellido);
-
-            telefono = JOptionPane.showInputDialog("Ingrese el telefono del estudiante");
-            ed.setTelefono(telefono);
-
-            modalidad = (JOptionPane.showInputDialog("Ingrese la modalidad del estudiante (virtual o presencial)"));
-            ed.setModalidad(modalidad);
-
-            asignaturas = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de asignaturas del estudiante"));
-            ed.setAsignaturas(asignaturas);
-
-            serial = JOptionPane.showInputDialog("Ingrese el serial del estudiante");
-            ed.setSerial(serial);
-
-            Registro.add(ed);
-
-            // Preguntar si se desea agregar más registros
-            System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
-            String opt = cp.readLine(); // Leer la entrada del usuario
-
-            if (opt.equals("2")) {
-                agregarMas = false; // Salir del bucle
-            }
-
         }
         return Registro;
+
     }
 
     public LinkedList<ComputadorPortatil> LlenarRegistroComputadorPortatil(LinkedList<ComputadorPortatil> Registro) throws IOException {
@@ -141,41 +162,51 @@ public class Operaciones {
         while (agregarMas) {
             ComputadorPortatil com = new ComputadorPortatil();
 
-            serial = JOptionPane.showInputDialog("Ingrese el serial del computador portatil");
+            while (true) {
+                serial = JOptionPane.showInputDialog("Ingrese el serial del computador portatil: ");
 
-            // ed = b.Buscar(Registro, cedula);
-            // if (ei != null && ei.getNumSemestreActual() > 0) {
-            //     System.out.println("el registro ya existe por favor escoja otra opcion");
-            //     break;
-            // }
-            // ei = new EstudianteIngenieria();// Crear un nuevo objeto si no existe un registro duplicado
-            com.setSerial(serial);
+                // Opción para salir
+                if (serial == null) {
+                    JOptionPane.showMessageDialog(null, "Operación cancelada.");
+                    return Registro; // Salir del método
+                }
 
-            marca = JOptionPane.showInputDialog("Ingrese la marca del computador portatil:");
-            com.setMarca(marca);
+                // Verificar si el estudiante ya existe
+                if (b.buscarComputadorPortatil(Registro, serial) != null) {
+                    JOptionPane.showMessageDialog(null, "El estudiante con cédula " + serial + " ya existe");
+                    continue; // Solicitar cédula nuevamente
+                }
 
-            tamaño = JOptionPane.showInputDialog("Ingrese el tamaño del computador portatil: ");
-            com.setTamaño(Float.parseFloat(tamaño));
+                com.setSerial(serial);
 
-            precio = JOptionPane.showInputDialog("Ingrese el precio del computador portatil: ");
-            com.setPrecio(Float.parseFloat(precio));
+                marca = JOptionPane.showInputDialog("Ingrese la marca del computador portatil:");
+                com.setMarca(marca);
 
-            sistemaOperativo = (JOptionPane.showInputDialog("Ingrese el sistema operativo del computador portatil: "));
-            com.setSistemaOperativo(sistemaOperativo);
+                tamaño = JOptionPane.showInputDialog("Ingrese el tamaño del computador portatil: ");
+                com.setTamaño(Float.parseFloat(tamaño));
 
-            procesador = (JOptionPane.showInputDialog("Ingrese el procesador del computador portatil"));
-            com.setProcesador(procesador);
+                precio = JOptionPane.showInputDialog("Ingrese el precio del computador portatil: ");
+                com.setPrecio(Float.parseFloat(precio));
 
-            Registro.add(com);
+                sistemaOperativo = (JOptionPane.showInputDialog("Ingrese el sistema operativo del computador portatil: "));
+                com.setSistemaOperativo(sistemaOperativo);
 
-            // Preguntar si se desea agregar más registros
-            System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
-            String opt = cp.readLine(); // Leer la entrada del usuario
+                procesador = (JOptionPane.showInputDialog("Ingrese el procesador del computador portatil"));
+                com.setProcesador(procesador);
 
-            if (opt.equals("2")) {
-                agregarMas = false; // Salir del bucle
+                Registro.add(com);
+
+                 // Preguntar si se desea agregar más registros
+                 String opt = JOptionPane.showInputDialog("¿Desea agregar más registros? (1. Si o 2. No)");
+
+                 if ("2".equals(opt)) {
+                     agregarMas = false; // Salir del bucle
+                     break; // Salir del bucle interno también
+                 } else if (!"1".equals(opt)) {
+                     JOptionPane.showMessageDialog(null, "Opción no válida");
+                     break; // Regresar al inicio para pedir la cédula de nuevo
+                 }
             }
-
         }
         return Registro;
     }
@@ -194,41 +225,52 @@ public class Operaciones {
         while (agregarMas) {
             TabletaGrafica ta = new TabletaGrafica();
 
-            serial = JOptionPane.showInputDialog("Ingrese el serial de la tableta");
+            while (true) {
+                serial = JOptionPane.showInputDialog("Ingrese el serial del computador portatil: ");
 
-            // ed = b.Buscar(Registro, cedula);
-            // if (ei != null && ei.getNumSemestreActual() > 0) {
-            //     System.out.println("el registro ya existe por favor escoja otra opcion");
-            //     break;
-            // }
-            // ei = new EstudianteIngenieria();// Crear un nuevo objeto si no existe un registro duplicado
-            ta.setSerial(serial);
+                // Opción para salir
+                if (serial == null) {
+                    JOptionPane.showMessageDialog(null, "Operación cancelada.");
+                    return Registro; // Salir del método
+                }
 
-            marca = JOptionPane.showInputDialog("Ingrese la marca de la tableta:");
-            ta.setMarca(marca);
+                // Verificar si el estudiante ya existe
+                if (b.buscarTableta(Registro, serial) != null) {
+                    JOptionPane.showMessageDialog(null, "El estudiante con cédula " + serial + " ya existe");
+                    continue; // Solicitar cédula nuevamente
+                }
 
-            tamaño = JOptionPane.showInputDialog("Ingrese el tamaño de la tableta: ");
-            ta.setTamaño(Float.parseFloat(tamaño));
+                ta.setSerial(serial);
 
-            precio = JOptionPane.showInputDialog("Ingrese el precio de la tableta: ");
-            ta.setPrecio(Float.parseFloat(precio));
+                marca = JOptionPane.showInputDialog("Ingrese la marca de la tableta:");
+                ta.setMarca(marca);
 
-            almacenamiento = (JOptionPane.showInputDialog("Ingrese el almacenamiento de la tableta: "));
-            ta.setAlmacenamiento(almacenamiento);
+                tamaño = JOptionPane.showInputDialog("Ingrese el tamaño de la tableta: ");
+                ta.setTamaño(Float.parseFloat(tamaño));
 
-            peso = Float.parseFloat((JOptionPane.showInputDialog("Ingrese el peso de la tableta")));
-            ta.setPeso(peso);
+                precio = JOptionPane.showInputDialog("Ingrese el precio de la tableta: ");
+                ta.setPrecio(Float.parseFloat(precio));
 
-            Registro.add(ta);
+                almacenamiento = (JOptionPane.showInputDialog("Ingrese el almacenamiento de la tableta: "));
+                ta.setAlmacenamiento(almacenamiento);
 
-            // Preguntar si se desea agregar más registros
-            System.out.println("¿Desea agregar más registros? (1. Sí, 2. No)");
-            String opt = cp.readLine(); // Leer la entrada del usuario
+                peso = Float.parseFloat((JOptionPane.showInputDialog("Ingrese el peso de la tableta")));
+                ta.setPeso(peso);
 
-            if (opt.equals("2")) {
-                agregarMas = false; // Salir del bucle
+                Registro.add(ta);
+
+                // Preguntar si se desea agregar más registros
+                String opt = JOptionPane.showInputDialog("¿Desea agregar más registros? (1. Si o 2. No)");
+
+                if ("2".equals(opt)) {
+                    agregarMas = false; // Salir del bucle
+                    break; // Salir del bucle interno también
+                } else if (!"1".equals(opt)) {
+                    JOptionPane.showMessageDialog(null, "Opción no válida");
+                    break; // Regresar al inicio para pedir la cédula de nuevo
+                }
+
             }
-
         }
         return Registro;
     }
@@ -247,13 +289,14 @@ public class Operaciones {
 
             switch (opt) {
                 case 1:
-                    im.leerArchivoComputadorPortatil("ComputadorPortatil.txt");
+                    im.leerArchivoComputadorPortatil("ComputadoresPortatiles.txt");
                     op.LlenarRegistroComputadorPortatil(Registro);
                     ex.exportarArchivoComputadorPortatil(Registro);
 
                     JOptionPane.showMessageDialog(null, "Dispositivo agregado correctamente");
                     break;
                 case 2:
+                    im.leerArchivoComputadorPortatil("ComputadoresPortatiles.txt");
                     op.mostrarPortatiles(Registro);
                     JOptionPane.showMessageDialog(null, "Dispositivos mostrados correctamente");
                     break;
@@ -280,14 +323,14 @@ public class Operaciones {
 
             switch (opt) {
                 case 1:
-                    im.leerArchivoTabletaGrafica("TabletasGraficas");
+                    im.leerArchivoTabletaGrafica("TabletasGraficas.txt");
                     op.LlenarRegistroTableta(Registro);
                     ex.exportarArchivoTabletaGrafica(Registro);
 
                     JOptionPane.showMessageDialog(null, "Dispositivo agregado correctamente");
                     break;
                 case 2:
-
+                    im.leerArchivoTabletaGrafica("TabletasGraficas.txt");
                     op.mostrarTabletas(Registro);
                     JOptionPane.showMessageDialog(null, "Dispositivos mostrados correctamente");
                     break;
@@ -367,7 +410,6 @@ public class Operaciones {
 
         if (com != null) {
 
-            
             JOptionPane.showMessageDialog(null, "Modificando el prestamo");
 
             // Modificar el equipo existente

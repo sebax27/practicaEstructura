@@ -32,9 +32,9 @@ public class Importar {
                     if (ei != null) {
                         ei.setTelefono(line.substring(10));
                     }
-                } else if (line.startsWith("Numero del semestre actual: ")) {
+                } else if (line.startsWith("Semestre actual: ")) {
                     if (ei != null) {
-                        ei.setNumSemestreActual(Integer.parseInt(line.substring(27)));
+                        ei.setNumSemestreActual(Integer.parseInt(line.substring(12)));
                     }
                 } else if (line.startsWith("Promedio acumulado: ")) {
                     if (ei != null) {

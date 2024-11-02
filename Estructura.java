@@ -75,7 +75,10 @@ public class Estructura {
                         break;
                     case 2:
                         LinkedList<ComputadorPortatil> equipos = new LinkedList<>();
+                        im.leerArchivoIngenieria("EstudiantesIngenieria.txt");
+                        im.leerArchivoComputadorPortatil("ComputadoresPortatiles.txt");
                         op.modificarPrestamoEquipoIngenieria(Registro, equipos);
+
                         break;
                     case 3:
                         // Código para devolución de equipo

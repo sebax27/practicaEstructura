@@ -14,7 +14,7 @@ public class Exportar {
                 escriba.write("Nombre: " + datos.getNombre() + "\n");
                 escriba.write("Apellido: " + datos.getApellido() + "\n");
                 escriba.write("telefono: " + datos.getTelefono() + "\n");
-                escriba.write("Numero del semestre actual: " + datos.getNumSemestreActual() + "\n");
+                escriba.write("Semestre actual: " + datos.getNumSemestreActual() + "\n");
                 escriba.write("Promedio acumulado: " + datos.getPromedioAcumulado() + "\n");
                 escriba.write("Serial: " + datos.getSerial() + "\n");
 
