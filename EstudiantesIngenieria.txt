@@ -1,0 +1,8 @@
+Cedula: 1035971230
+Nombre: Sebastian
+Apellido: Holguin
+telefono: 3002627732
+Numero del semestre actual: 4
+Promedio acumulado: 4.0
+Serial: sEr3254
+---------------------------------------

@@ -1,0 +1,7 @@
+Serial: sEr3245
+Marca: ASUS
+Tamaño: 15.0
+Precio: 2000000.0
+Sistema operativo: null
+Procesador: null
+---------------------------------------
