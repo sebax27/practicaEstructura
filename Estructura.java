@@ -68,7 +68,9 @@ public class Estructura {
                 switch (opt) {
                     case 1:
                        
-                        im.leerArchivoIngenieria("EstudiantesIngenieria.txt");
+                    Registro = im.leerArchivoIngenieria("EstudiantesIngenieria.txt");
+
+                        System.out.println("----> "+im.leerArchivoIngenieria("EstudiantesIngenieria.txt"));
                         op.LlenarRegistroIngenieria(Registro);
                         op.menuRegistroPortatil();
                       

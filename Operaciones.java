@@ -38,6 +38,7 @@ public class Operaciones {
                 }
 
                 // Verificar si el estudiante ya existe
+                System.out.println("---- voy aqui : "+b.BuscarIngeniero(Registro, cedula));
                 if (b.BuscarIngeniero(Registro, cedula) != null) {
                     JOptionPane.showMessageDialog(null, "El estudiante con cedula " + cedula + " ya existe");
                     continue; // Solicitar cedula nuevamente

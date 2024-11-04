@@ -7,60 +7,75 @@ import javax.swing.JOptionPane;
 public class Importar {
     
     public LinkedList<EstudianteIngenieria> leerArchivoIngenieria(String nombreArchivo) {
+        LinkedList<EstudianteIngenieria> estudiantes = new LinkedList<>();
         String rutaArchivo = nombreArchivo;
-        LinkedList<EstudianteIngenieria> estudiante = new LinkedList<>();
+
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String line;
             EstudianteIngenieria ei = null;
-    
+            
             while ((line = br.readLine()) != null) {
+                line = line.trim(); // Quita espacios en blanco innecesarios al inicio y final
+
                 if (line.startsWith("Cedula: ")) {
-                    if (ei != null) {
-                        estudiante.add(ei);
-                    }
+                    String cedula = line.substring(8).trim();
+                    System.out.println(cedula);
                     ei = new EstudianteIngenieria();
-                    ei.setCedula(line.substring(8)); 
+                    ei.setCedula(cedula);
                 } else if (line.startsWith("Nombre: ")) {
-                     if (ei != null) {
-                        ei.setNombre(line.substring(8));
+                    if (ei != null) {
+                        ei.setNombre(line.substring(8).trim());
                     }
                 } else if (line.startsWith("Apellido: ")) {
                     if (ei != null) {
-                        ei.setApellido(line.substring(10));
-                    } 
+                        ei.setApellido(line.substring(10).trim());
+                    }
                 } else if (line.startsWith("Telefono: ")) {
                     if (ei != null) {
-                        ei.setTelefono(line.substring(10));
+                        ei.setTelefono(line.substring(10).trim());
                     }
                 } else if (line.startsWith("Semestre actual: ")) {
                     if (ei != null) {
-                        ei.setNumSemestreActual(Integer.parseInt(line.substring(12)));
+                        ei.setNumSemestreActual(Integer.parseInt(line.substring(17).trim()));
                     }
                 } else if (line.startsWith("Promedio acumulado: ")) {
                     if (ei != null) {
-                        ei.setPromedioAcumulado(Float.parseFloat(line.substring(19)));
+                        ei.setPromedioAcumulado(Float.parseFloat(line.substring(19).trim()));
                     }
                 } else if (line.startsWith("Serial: ")) {
                     if (ei != null) {
-                        ei.setSerial(line.substring(8));
-                        estudiante.add(ei); 
+                        ei.setSerial(line.substring(8).trim());
+                        estudiantes.add(ei); // Añadir estudiante completo a la lista
                         ei = null; // Reiniciar para el siguiente estudiante
                     }
                 }
             }
-    
+
             if (ei != null) { // Agregar el último estudiante si el archivo no termina con "Serial: "
-                estudiante.add(ei);
+                estudiantes.add(ei);
             }
-    
-            System.out.println("Archivo importado correctamente.");
+
+            // Mostrar mensaje de éxito y el número de registros cargados
+            JOptionPane.showMessageDialog(null, "Archivo importado correctamente. Registros cargados: " + estudiantes.size());
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar el archivo por favor inténtelo de nuevo");
+            JOptionPane.showMessageDialog(null, "Ocurrió un error al procesar el archivo. Inténtelo de nuevo.");
+            e.printStackTrace();
         }
-    
-        return estudiante;
+
+        return estudiantes;
     }
-    
+
+    // Método auxiliar para buscar un estudiante por cédula en la lista
+    private EstudianteIngenieria buscarEstudiantePorCedula(LinkedList<EstudianteIngenieria> estudiantes, String cedula) {
+        
+        EstudianteIngenieria estudianteSearch = null;
+        for (EstudianteIngenieria estudiante : estudiantes) {
+            // if (estudiante.getCedula().equals(cedula)) {
+                estudianteSearch= estudiante; // Devuelve el estudiante si encuentra coincidencia
+            // }
+        }
+        return estudianteSearch; // Retorna null si no encuentra coincidencia
+    }
     public LinkedList<EstudianteDiseño> leerArchivoDiseño(String nombreArchivo) {
         String rutaArchivo = nombreArchivo;
         LinkedList<EstudianteDiseño> estudiante = new LinkedList<>();

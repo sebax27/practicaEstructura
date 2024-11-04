@@ -1,24 +1,16 @@
 Cedula: 98626805
-Nombre: Camila
-Apellido: Perez
-telefono: 3546789080
-Semestre actual: 6
-Promedio acumulado: 3.5
-Serial: Ser32425
+Nombre: d
+Apellido: d
+telefono: null
+Semestre actual: 2
+Promedio acumulado: 2.0
+Serial: 22
 ---------------------------------------
-Cedula: 98626805
-Nombre: Camila
-Apellido: Perez
-telefono: 3546789080
-Semestre actual: 6
-Promedio acumulado: 3.5
-Serial: Ser32425
----------------------------------------
-Cedula: 98626805
-Nombre: Camila
-Apellido: Perez
-telefono: 3546789080
-Semestre actual: 6
-Promedio acumulado: 3.5
-Serial: Ser32425
+Cedula: 12
+Nombre: fff
+Apellido: ffff
+telefono: 2
+Semestre actual: 2
+Promedio acumulado: 2.0
+Serial: 5555
 ---------------------------------------

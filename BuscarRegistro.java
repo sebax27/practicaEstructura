@@ -3,13 +3,14 @@ import java.util.LinkedList;
 public class BuscarRegistro {
     public EstudianteIngenieria BuscarIngeniero(LinkedList<EstudianteIngenieria> Registro, String cedula) {
        
+        EstudianteIngenieria est=null;
         for (EstudianteIngenieria estudiante : Registro) {
             if (estudiante.getCedula().equalsIgnoreCase(cedula)) {
-               return estudiante;
+                est=  estudiante;
             }
         }
 
-        return null;
+        return est; 
     }
     public EstudianteDiseño buscarDiseñador(LinkedList<EstudianteDiseño> registro, String cedula) {
         for (EstudianteDiseño estudiante : registro) {
